@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login Page</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bookapp/css/style.css' %}">
+  </head>
+  <body class="main_page">
+  <h1> READ IT AND WEEP </h1>
+
+  <div class="wrapper">
+  {% load staticfiles %}
+    <img src="{% static 'bookapp/images/book-161128_1280.png' %}" alt="book_pic"/>
+    <div class="register">
+      <h3 id="reg">Register</h3>
+      <form action="/create" method="POST">
+        {% csrf_token %}
+        <p>
+          <label for fname="first_name" id="name1">First name:</label>
+          <input type="text" id="name" name="first_name"><p>
+        <p>
+          <label for lname="last_name" id="name1">Last name:</label>
+          <input type="text" id="name" name="last_name"><p>
+        <p>
+          <label for email="email" id="name1">Email:</label>
+          <input type="text" id="name" name="email"></p>
+        <p>
+          <label for password="password" id="name1">Password:</label>
+          <input type="password" id="name" name="password"></p>
+        <p>
+          <label for passwordcon="passwordcon" id="name1">Confirm Password:</label>
+          <input type="password" id="name" name="passwordcon"></p>
+        <p>
+          <input type="submit" id="submit" class="two" name="submit" value="Register"></p>
+      </form>
+    </div>
+    <div class="login">
+      <h3 id="reg">Log In</h3>
+      <form action="/exists" method="POST">
+        {% csrf_token %}
+        <p>
+          <label for email="email" id="name1">Email:</label>
+          <input type="text" id="name" name="email"></p>
+        <p>
+          <label for password="password" id="name1">Password:</label>
+          <input type="password" id="name" name="password"></p>
+          <p>
+          <input type="submit" id="submit" name="submit" class="one" value="Log In"></p>
+      </form>
+      <h4 class="messages">
+        {% for message in messages %}
+        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+      </h4>
+    </div>
+   </div>
+ </body>
+</html>
